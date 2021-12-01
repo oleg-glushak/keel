@@ -45,6 +45,18 @@ spec:
               readOnly: true
 {{- end }}
           env:
+            {{- with .Values.http_proxy }}
+            - name: HTTP_PROXY
+              value: {{ . }}
+            {{- end }}
+            {{- with .Values.https_proxy }}
+            - name: HTTPS_PROXY
+              value: {{ . }}
+            {{- end }}
+            {{- with .Values.no_proxy }}
+            - name: NO_PROXY
+              value: {{ . }}
+            {{- end }}
             - name: NAMESPACE
               valueFrom:
                 fieldRef:
